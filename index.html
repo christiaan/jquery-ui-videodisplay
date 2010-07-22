@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Flash Video demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+
+	<script type="text/javascript" src="silverlight/Silverlight.js"></script>
+	<script type="text/javascript" src="silverlight/jquery.ui.silverlightvideo.js"></script>
+	<link rel="stylesheet" type="text/css" href="silverlight/jquery.ui.silverlightvideo.css" />
+
+	<script type="text/javascript" src="flash/jquery.ui.flashvideo.js"></script>
+	<link rel="stylesheet" type="text/css" href="flash/jquery.ui.flashvideo.css" />
+
+	<script type="text/javascript" src="html/jquery.ui.htmlvideo.js"></script>
+	<link rel="stylesheet" type="text/css" href="html/jquery.ui.htmlvideo.css" />
+
+	<script type="text/javascript">
+		jQuery(function($) {
+			var interval, video = $('#html_video'), timespan = $('#html_time'), updatetime = function(time) {
+				timespan.html(time);
+			};
+
+			video.htmlvideo({
+				ready : function(e, ui) {
+					ui.src("video.ogg").play();
+				},
+				play : function(e, ui) {
+					updatetime(ui.time());
+					interval = setInterval(function() {
+						updatetime(ui.time());
+					}, 100);
+				},
+				pause : function(e, ui) {
+					updatetime(ui.time());
+					clearInterval(interval);
+				},
+				ended : function(e, ui) {
+					updatetime(ui.time());
+					clearInterval(interval);
+				},
+				durationchange : function(e, ui) {
+					$("#html_duration").html(ui.duration);
+				}
+			});
+
+			video.find(".ui-htmlvideo-clickcatcher").bind("click", function() {
+				video.htmlvideo("toggle");
+			});
+		});
+
+		jQuery(function($) {
+			var interval, video = $('#silver_video'), timespan = $('#silver_time'), updatetime = function(time) {
+				timespan.html(time);
+			};
+
+			video.silverlightvideo({
+				ready : function(e, ui) {
+					ui.src("video.wmv").play();
+				},
+				play : function(e, ui) {
+					updatetime(ui.time());
+					interval = setInterval(function() {
+						updatetime(ui.time());
+					}, 100);
+				},
+				pause : function(e, ui) {
+					updatetime(ui.time());
+					clearInterval(interval);
+				},
+				ended : function(e, ui) {
+					updatetime(ui.time());
+					clearInterval(interval);
+				},
+				durationchange : function(e, ui) {
+					$("#silver_duration").html(ui.duration);
+				}
+			});
+
+			video.find(".ui-silverlightvideo-clickcatcher").bind("click", function() {
+				video.silverlightvideo("toggle");
+			});
+		});
+
+		jQuery(function($) {
+			var interval, video = $('#flash_video'), timespan = $("#flash_time"), updatetime = function(time) {
+				timespan.html(time);
+			};
+
+			video.flashvideo({
+				ready : function(e, ui) {
+					// relative from the swf
+					ui.src("video.flv").play();
+				},
+				play : function(e, ui) {
+					updatetime(ui.time());
+					interval = setInterval(function() {
+						updatetime(ui.time());
+					}, 100);
+				}, 
+				pause : function(e, ui) {
+					updatetime(ui.time());
+					clearInterval(interval);
+				},
+				ended : function(e, ui) {
+					updatetime(ui.time());
+					clearInterval(interval);
+				},
+				durationchange : function(e, ui) {
+					$("#flash_duration").html(ui.duration);
+				}
+			});
+
+			video.find(".ui-flashvideo-clickcatcher").bind("click", function() {
+				video.flashvideo("toggle");
+			});
+		});
+	</script>
+  </head>
+  <body>
+	<div id="html_video" style="width: 320px; height: 240px;"></div>
+	<div id="html_time"></div>
+	<div id="html_duration"></div>
+
+	<div id="flash_video" style="width: 320px; height: 240px;"></div>
+	<div id="flash_time"></div>
+	<div id="flash_duration"></div>
+
+	<div id="silver_video" style="width: 320px; height: 240px;"></div>
+	<div id="silver_time"></div>
+	<div id="silver_duration"></div>
+  </body>
+</html>
