@@ -1,0 +1,6 @@
+.ui-videodisplay-object,
+.ui-videodisplay-clickcatcher {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+}

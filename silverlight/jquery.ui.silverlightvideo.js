@@ -6,7 +6,7 @@
 		_create : function() {
 			var o = this.options,
 			el = this.element,
-			clickCatcher = $('<div>', {"class" : "ui-silverlightvideo-clickcatcher"});
+			clickCatcher = $('<div>', {"class" : "ui-videodisplay-clickcatcher"});
 
 			this._playing = false;
 			this._old_contents = el.contents();
@@ -39,7 +39,7 @@
 				context : this
 			});
 
-			el.find("object, embed").addClass("ui-silverlightvideo-object");
+			el.find("object, embed").addClass("ui-videodisplay-object");
 			el.append(clickCatcher);
 		},
 		destroy : function() {

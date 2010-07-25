@@ -10,13 +10,10 @@
 
 	<script type="text/javascript" src="silverlight/Silverlight.js"></script>
 	<script type="text/javascript" src="silverlight/jquery.ui.silverlightvideo.js"></script>
-	<link rel="stylesheet" type="text/css" href="silverlight/jquery.ui.silverlightvideo.css" />
-
 	<script type="text/javascript" src="flash/jquery.ui.flashvideo.js"></script>
-	<link rel="stylesheet" type="text/css" href="flash/jquery.ui.flashvideo.css" />
-
 	<script type="text/javascript" src="html/jquery.ui.htmlvideo.js"></script>
-	<link rel="stylesheet" type="text/css" href="html/jquery.ui.htmlvideo.css" />
+	
+	<link rel="stylesheet" type="text/css" href="jquery.ui.videodisplay.css" />
 
 	<script type="text/javascript">
 		jQuery(function($) {
@@ -47,7 +44,7 @@
 				}
 			});
 
-			video.find(".ui-htmlvideo-clickcatcher").bind("click", function() {
+			video.find(".ui-videodisplay-clickcatcher").bind("click", function() {
 				video.htmlvideo("toggle");
 			});
 		});
@@ -80,7 +77,7 @@
 				}
 			});
 
-			video.find(".ui-silverlightvideo-clickcatcher").bind("click", function() {
+			video.find(".ui-videodisplay-clickcatcher").bind("click", function() {
 				video.silverlightvideo("toggle");
 			});
 		});
@@ -114,7 +111,7 @@
 				}
 			});
 
-			video.find(".ui-flashvideo-clickcatcher").bind("click", function() {
+			video.find(".ui-videodisplay-clickcatcher").bind("click", function() {
 				video.flashvideo("toggle");
 			});
 		});

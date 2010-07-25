@@ -7,12 +7,12 @@
 			var self = this,
 			o = this.options,
 			el = this.element,
-			clickCatcher = $('<div>', {"class" : "ui-htmlvideo-clickcatcher"});
+			clickCatcher = $('<div>', {"class" : "ui-videodisplay-clickcatcher"});
 
 			this._playing = false;
 			this._old_contents = el.contents();
 			el.empty();
-			this.$video = $('<video></video>', {"class": "ui-htmlvideo-object", height: el.height(), width: el.width()});
+			this.$video = $('<video></video>', {"class": "ui-videodisplay-object", height: el.height(), width: el.width()});
 			this.$video.bind("ended", function() {
 				self._playing = false;
 				self._trigger("ended", null, self);

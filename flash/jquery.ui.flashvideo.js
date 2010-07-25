@@ -8,7 +8,7 @@
 		_create : function() {
 			var o = this.options,
 			el = this.element,
-			clickCatcher = $('<div>', {"class" : "ui-flashvideo-clickcatcher"});
+			clickCatcher = $('<div>', {"class" : "ui-videodisplay-clickcatcher"});
 
 			this._videoid = "ui_flash_video_" + id;
 			this._playing = false;
@@ -38,7 +38,7 @@
 					allowFullScreen : "true",
 					wmode : "transparent"
 				},
-				{"class" : "ui-flashvideo-object"}
+				{"class" : "ui-videodisplay-object"}
 			);
 		},
 		destroy : function() {
