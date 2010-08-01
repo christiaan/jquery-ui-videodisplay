@@ -7,7 +7,8 @@
 			var self = this,
 			o = this.options,
 			el = this.element,
-			clickCatcher = $('<div>', {"class" : "ui-videodisplay-clickcatcher"});
+			clickCatcher = $('<img>', {"src" : "pixel.gif", "class" : "ui-videodisplay-clickcatcher"});
+			clickCatcher.attr("width", el.width()).attr("height", el.height());
 
 			this._playing = false;
 			this._old_contents = el.contents();

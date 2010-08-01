@@ -9,7 +9,7 @@
 			var o = this.options,
 			el = this.element,
 			clickCatcher = $('<img>', {"src" : "pixel.gif", "class" : "ui-videodisplay-clickcatcher"});
-			clickCatcher.width(el.width()).height(el.height());
+			clickCatcher.attr("width", el.width()).attr("height", el.height());
 
 			this._videoid = "flashvideodisplay_" + id;
 			this._playing = false;
