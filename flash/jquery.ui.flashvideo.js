@@ -134,7 +134,7 @@
 			return this;
 		},
 		play : function() {
-			this.video.play();
+			this.video.playVideo();
 			this._playing = true;
 			this._trigger("play", null, this);
 			return this;

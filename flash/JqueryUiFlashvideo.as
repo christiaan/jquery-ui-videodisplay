@@ -65,7 +65,7 @@ package
 				ExternalInterface.addCallback("duration", getDuration);
 				ExternalInterface.addCallback("src", src);
 				ExternalInterface.addCallback("volume", volume);
-				ExternalInterface.addCallback("play", play);
+				ExternalInterface.addCallback("playVideo", play);
 				ExternalInterface.addCallback("pause", pause);
 				ExternalInterface.addCallback("fullscreen", fullscreen);
 
