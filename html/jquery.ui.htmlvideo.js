@@ -13,6 +13,12 @@
 			this._old_contents = el.contents();
 			el.empty();
 			this.$video = $('<video></video>', {"class": "ui-videodisplay-object", height: el.height(), width: el.width()});
+			this.video = this.$video[0];
+
+			if(typeof this.video.canPlayType === 'undefined') {
+				throw new Error("Browser doesn't support html video tag");
+			}
+
 			this.$video.bind("ended", function() {
 				self._playing = false;
 				self._trigger("ended", null, self);
@@ -20,7 +26,6 @@
 				self.duration = this.duration;
 				self._trigger("durationchange", null, self);
 			});
-			this.video = this.$video[0];
 			el.append(this.video);
 			el.append(clickCatcher);
 

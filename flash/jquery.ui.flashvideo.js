@@ -1,4 +1,4 @@
-(function($, swfobject) {
+(function(win, $, swfobject) {
 	var id = 1;
 
 	$.widget("ui.flashvideo", {
@@ -10,9 +10,9 @@
 			el = this.element,
 			clickCatcher = $('<div>', {"class" : "ui-videodisplay-clickcatcher"});
 
-			this._videoid = "ui_flash_video_" + id;
+			this._videoid = "flashvideodisplay_" + id;
 			this._playing = false;
-			this._callback = "flashvideocb_" + id;
+			this._callback = "flashvideodisplaycb_" + id;
 			this._old_contents = el.contents();
 			el.empty();
 			id += 1;
@@ -21,14 +21,14 @@
 			el.append(clickCatcher);
 
 			// register the callback in the global scope so flash can reach it
-			window[this._callback] = this._getFlashCallback();
+			win[this._callback] = this._getFlashCallback();
 
 			swfobject.embedSWF(
 				o.swf,
 				this._videoid,
 				el.width(),
 				el.height(),
-				"9.0.0",
+				"9",
 				null,
 				{// Flash vars
 					callback : this._callback
@@ -36,9 +36,14 @@
 				{// params
 					allowScriptAcces : "always",
 					allowFullScreen : "true",
-					wmode : "transparent"
+					wmode : "opaque"
 				},
-				{"class" : "ui-videodisplay-object"}
+				{"class" : "ui-videodisplay-object"},
+				function(e) {
+					if (!e.success) {
+						throw new Error("Could not embed SWF");
+					}
+				}
 			);
 		},
 		destroy : function() {
@@ -52,11 +57,6 @@
 
 			this._trigger("destroy", null, this);
 		},
-		/*
-		_setOption : function(option, value) {
-			$.Widget.prototype._setOption.apply(this, arguments);
-		},
-		 //*/
 		_getFlashCallback : function() {
 			var callback = $.proxy(this, "_flashCallback");
 			return function(event) {
@@ -68,8 +68,11 @@
 		_flashCallback : function(event) {
 			switch (event) {
 				case "ready":
-					this.video = document.getElementById(this._videoid);
-					this._trigger("ready", null, this);
+					if (this._videoid) {
+						this.video = document.getElementById(this._videoid);
+						delete this._videoid;
+						this._trigger("ready", null, this);
+					}
 					break;
 
 				case "ended":
@@ -157,4 +160,4 @@
 		}
 	});
 
-})(jQuery, swfobject);
+})(window, jQuery, swfobject);
